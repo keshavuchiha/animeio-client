@@ -1,0 +1,16 @@
+.mainHeader{
+    position: sticky;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+}
+
+
+.menuItems {
+    justify-content: space-around;
+    /* display: flex */
+    color: aqua;
+}
+.menuItems :hover{
+    color: red;
+}
