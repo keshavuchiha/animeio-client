@@ -1,0 +1,10 @@
+.movieCardText{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-height: 15vh;
+    white-space: nowrap;
+}
+
+.similarMovieCard :hover{
+    background-color: rgb(58, 52, 52);
+}

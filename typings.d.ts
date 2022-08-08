@@ -21,7 +21,7 @@ export interface MovieDetails {
   popularity: number;
   poster_path: string | null;
   production_companies: ProductionCompanies[];
-  release_data: string;
+  release_date: string;
   revenue: number;
   runtine: number | null;
   status: "Rumored" | "Planned" | "In Production";
@@ -31,6 +31,7 @@ export interface MovieDetails {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  runtime:string;
 }
 
 interface Movies {
@@ -51,4 +52,20 @@ export interface Comment {
   created_at: string;
   id: string;
   url: string;
+}
+
+
+interface Trailers {
+  id:number;
+  results:Trailer[]
+}
+interface Trailer{
+  id:string;
+  key:string;
+  site:string;
+  size:number;
+  type:string;
+  official:boolean;
+  published_at:string;
+  name:string
 }

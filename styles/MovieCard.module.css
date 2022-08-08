@@ -1,0 +1,14 @@
+.movieCard{
+    position: absolute;
+    display: none;
+    top:0;
+    padding: 0.2rem;
+    color: aliceblue;
+}
+.movieCardImage:hover + .movieCard{
+    display: block;
+} 
+.movieCardImage:hover{
+    transform: scale(1.1);
+    opacity: 0.1;
+}

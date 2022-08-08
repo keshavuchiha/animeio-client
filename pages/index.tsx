@@ -10,6 +10,7 @@ import { MovieDetails, Movies } from "../typings";
 import BannerCarousel from "../components/BannerCarousel";
 import { useQuery } from "@tanstack/react-query";
 import { fetchMovies } from "../utils/fetchMovies";
+import MoviesSlider from "../components/MovieSlider";
 
 interface Props {
   
@@ -36,6 +37,7 @@ const Home: NextPage = (props: Props) => {
       </Layout>
 
       <BannerCarousel movies={movies?.results} />
+      <MoviesSlider movies={movies?.results}/>
     </div>
   );
 };

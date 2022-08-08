@@ -5,11 +5,11 @@ import { MantineProvider } from "@mantine/core";
 import { tmdbApiKey } from "../constants/constants";
 import { fetchMovieGenres, fetchTvGenres } from "../utils/fetchHeaderData";
 import {useQuery,QueryClientProvider,QueryClient} from '@tanstack/react-query'
-
+import {useRouter} from 'next/router'
 const queryClient=new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
-  
+  const router=useRouter()
   return (
     <>
       <SessionProvider session={pageProps.session}>
@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           withNormalizeCSS
           theme={{ colorScheme: "dark" }}
         >
-          <Component {...pageProps} />
+          <Component {...pageProps} key={router.asPath}/> 
         </MantineProvider>
         </QueryClientProvider>
       </SessionProvider>
