@@ -69,3 +69,4 @@ interface Trailer{
   published_at:string;
   name:string
 }
+

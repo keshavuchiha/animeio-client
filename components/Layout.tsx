@@ -8,6 +8,7 @@ import { tmdbApiKey } from "../constants/constants";
 import { useQuery } from "@tanstack/react-query";
 import { fetchMovieGenres, fetchTvGenres } from "../utils/fetchHeaderData";
 import { Genres } from "../typings";
+import Router,{useRouter} from 'next/router'
 interface Props {
   children: React.ReactNode;
 }
@@ -16,6 +17,7 @@ interface GenreObject{
 }
 
 function Layout(props: Props) {
+  const router=useRouter();
   const [value, setValue] = useState("");
   const {data:movieGenres,isLoading:movieGenreLoading}=useQuery<GenreObject>(['/movie/genres'],()=>fetchMovieGenres());
   const {data:tvGenres,isLoading:tvGenreLoading}=useQuery<GenreObject>(['/tv/genres'],()=>fetchTvGenres());
@@ -26,7 +28,18 @@ function Layout(props: Props) {
   }
   // console.log(movieGenres?.genres[0].name,tvGenres?.genres,"layout");
   const { children } = props;
-
+  const handleSearch=async (e:React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
+    e.preventDefault()
+    console.log(value)
+    // router.push('/')
+    router.push({
+      pathname:"/search",
+      query:{
+        q:value
+      },
+    },
+    undefined)
+  }
   return (
     <>
     {/* {console.log(genres,"layout")} */}
@@ -44,7 +57,7 @@ function Layout(props: Props) {
             value={value}
             onChange={(e) => setValue(e.target.value)}
           />
-          <ActionIcon>
+          <ActionIcon onClick={(e:React.MouseEvent<HTMLButtonElement, MouseEvent>)=>handleSearch(e)}>
             <Search />
           </ActionIcon>
           <LoginBtn>SignIn</LoginBtn>

@@ -11,7 +11,7 @@ export const fetchMovieById = async (id: number) => {
 
 export const fetchSimilarMovies = async (id:number,pageParam:QueryFunctionContext) => {
     // console.log(pageParam,'pageparams');
-  let url = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${tmdbApiKey}&language=en-US&page=${pageParam}`;
+  let url = `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${tmdbApiKey}&language=en-US&page=${pageParam}`;
   //   console.log("url", url);
   const response = await fetch(url);
   const data = await response.json();
