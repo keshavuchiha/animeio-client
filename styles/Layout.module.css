@@ -14,3 +14,27 @@
 .menuItems :hover{
     color: red;
 }
+
+.bannerImage{
+    object-fit: cover;
+    z-index: -5;
+    opacity: 0.5;
+}
+.banner{
+    position: relative;
+    padding-bottom: 1rem;
+}
+.bannerText{
+    display: block;
+    position: absolute;
+    top:15vh;
+    left:4%;
+    max-width: 40vw;
+    text-align: justify;
+    font-weight: bold;
+    color: aliceblue;
+    
+}
+.bannerButton{
+    margin: 0.3rem;
+}

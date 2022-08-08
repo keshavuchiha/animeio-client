@@ -5,6 +5,7 @@ interface Props{
     children:React.ReactNode
 }
 
+
 function LoginBtn(props:Props) {
     const {data:session}=useSession()
     const {children}=props;
@@ -12,7 +13,7 @@ function LoginBtn(props:Props) {
     if(session){
         return (<>
         <Button onClick={()=>signOut()} >SignOut</Button>
-        {console.log(session?.user.email)}
+        {console.log(session?.user?.email)}
         </>)
     }
   return (
