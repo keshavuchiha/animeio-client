@@ -29,7 +29,7 @@ function MovieTabs(props: Props) {
     ["/movies/trailer", id],
     async () => fetchTrailers(id)
   );
-  if(!similarMovies || !trailers){
+  if(!similarMovies || !trailers || isLoading){
     return <>Loading...</>
   }
   const trailersData: SelectItem[] = trailers?.results.map((trailer) => {
@@ -61,7 +61,6 @@ function MovieTabs(props: Props) {
           {/* {console.log('similar',similarMovies)} */}
           <Stack sx={{ marginTop: "0.5rem", marginBottom: "0.5rem" }}>
             {similarMovies?.pages.map((movies, index) => {
-              console.log(movies, index);
               return (
                 <React.Fragment key={index}>
                   {movies.results.map((movie) => {
@@ -81,10 +80,13 @@ function MovieTabs(props: Props) {
             nothingFound="no options"
             onChange={(e) => handleUrlChange(e as string)}
           />
-          <ReactPlayer
+          {
+            trailers.results[videoIndex] && <ReactPlayer
             url={`https://www.youtube.com/watch?v=${trailers?.results[videoIndex].key}`}
             controls
           />
+          }
+          
         </Tabs.Panel>
       </Tabs>
     </>

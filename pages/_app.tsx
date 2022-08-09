@@ -8,11 +8,11 @@ import {useQuery,QueryClientProvider,QueryClient} from '@tanstack/react-query'
 import {useRouter} from 'next/router'
 const queryClient=new QueryClient();
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps :{session,...pageProps}}: AppProps) {
   const router=useRouter()
   return (
     <>
-      <SessionProvider session={pageProps.session}>
+      <SessionProvider session={session}>
         <QueryClientProvider client={queryClient}>
 
         <MantineProvider

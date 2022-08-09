@@ -2,18 +2,10 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
 import { useQuery } from "@tanstack/react-query";
-import {
-  Grid,
-  Group,
-  Text,
-} from "@mantine/core";
+import { Grid, Group, Text } from "@mantine/core";
 import { GetServerSideProps } from "next";
-import {
-  fetchMovieById,
-  fetchTrailers,
-} from "../../utils/fetchMovieData";
-import { baseUrl } from "../../constants/constants";
-import { Genres, MovieDetails, Movies, Trailers } from "../../typings";
+import { fetchMovieById } from "../../utils/fetchMovieData";
+import { Genres, MovieDetails } from "../../typings";
 import MovieInfo from "../../components/MovieInfo";
 import MovieTabs from "../../components/MovieTabs";
 
@@ -24,7 +16,6 @@ interface Props {
 }
 
 function Movie(props: Props) {
-  const router = useRouter();
 
   const id = parseInt(props.id.movieId as string);
   const { data: movie } = useQuery<MovieDetails>(["api/movie"], async () =>

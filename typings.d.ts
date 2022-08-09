@@ -55,11 +55,11 @@ export interface Comment {
 }
 
 
-interface Trailers {
+export interface Trailers {
   id:number;
   results:Trailer[]
 }
-interface Trailer{
+export interface Trailer{
   id:string;
   key:string;
   site:string;
@@ -70,3 +70,8 @@ interface Trailer{
   name:string
 }
 
+export interface Discover{
+  language:string;
+  region:string;
+  sort_by:[]
+}
