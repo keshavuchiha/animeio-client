@@ -12,17 +12,12 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchMovies } from "../utils/fetchMovies";
 import MoviesSlider from "../components/MovieSlider";
 
-interface Props {
-  
-}
+interface Props {}
 
 const Home: NextPage = (props: Props) => {
-  const {data:movies,isLoading}=useQuery<Movies>(['/movies/popular'],()=>fetchMovies());
-  if(isLoading){
-    return <>Loading...</>
-  }
+  const types=['latest'];
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Animeio</title>
         <meta
@@ -31,13 +26,17 @@ const Home: NextPage = (props: Props) => {
         />
       </Head>
       <Layout>
-        Index Page
-        <br />
-        <Link href="/temp">temp</Link>
+        <BannerCarousel />
+        {types.map(type=>{
+          let typeString=type;
+          typeString=typeString[0].toUpperCase()+typeString.slice(1);
+          typeString.replace('_',' ');
+          return <div key={type}>
+          {typeString}
+            <MoviesSlider type={type}/>
+          </div>
+        })}
       </Layout>
-
-      <BannerCarousel movies={movies?.results} />
-      <MoviesSlider movies={movies?.results}/>
     </div>
   );
 };

@@ -75,3 +75,4 @@ export interface Discover{
   region:string;
   sort_by:[]
 }
+

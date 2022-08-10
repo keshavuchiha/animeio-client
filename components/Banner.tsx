@@ -9,7 +9,6 @@ interface Props {
 }
 function Banner(props: Props) {
   const { movie } = props;
-  console.log(movie);
   return (
     <div className={styles.banner}>
       <Image
@@ -19,7 +18,6 @@ function Banner(props: Props) {
         alt="Poster Movie"
         className={styles.bannerImage}
       />
-      {movie?.original_title}
       <div className={styles.bannerText}>
           <Text sx={(theme)=>({
             fontSize:"1.5rem"
