@@ -76,3 +76,10 @@ export interface Discover{
   sort_by:[]
 }
 
+interface Option{
+  option:string
+  value:string
+}
+export interface UrlParams{
+  options:Option[]
+}

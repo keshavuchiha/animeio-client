@@ -2,7 +2,13 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Layout from "../components/Layout";
-import { baseUrl } from "../constants/constants";
+import {
+  baseUrl,
+  getCurrentlyPlaying,
+  getPoplular,
+  getTopRated,
+  getUpcomming,
+} from "../constants/constants";
 import styles from "../styles/Home.module.css";
 import { tmdbApiKey } from "../constants/constants";
 import Link from "next/link";
@@ -15,7 +21,7 @@ import MoviesSlider from "../components/MovieSlider";
 interface Props {}
 
 const Home: NextPage = (props: Props) => {
-  const types=['latest'];
+  const types = ["latest"];
   return (
     <div>
       <Head>
@@ -27,15 +33,17 @@ const Home: NextPage = (props: Props) => {
       </Head>
       <Layout>
         <BannerCarousel />
-        {types.map(type=>{
-          let typeString=type;
-          typeString=typeString[0].toUpperCase()+typeString.slice(1);
-          typeString.replace('_',' ');
-          return <div key={type}>
-          {typeString}
-            <MoviesSlider type={type}/>
-          </div>
-        })}
+        <Link href={`/movies?sortBy=Upcoming`}>Upcoming</Link>
+
+        <MoviesSlider url={getUpcomming} />
+        <Link href={`/movies?sortBy=Popular`}>Popular</Link>
+        <MoviesSlider url={getPoplular} />
+        <Link href={`/movies?sortBy=Now_Playing`}>Now Playing</Link>
+
+        <MoviesSlider url={getCurrentlyPlaying} />
+        <Link href={`/movies?sortBy=Top_Rated`}>Top Rated</Link>
+
+        <MoviesSlider url={getTopRated} />
       </Layout>
     </div>
   );

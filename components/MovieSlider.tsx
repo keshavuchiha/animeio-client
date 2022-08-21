@@ -1,18 +1,20 @@
 import { Carousel } from "@mantine/carousel";
 import React from "react";
-import { MovieDetails } from "../typings";
+import { MovieDetails, UrlParams } from "../typings";
 import MovieCard from "./MovieCard";
 import {useQuery} from '@tanstack/react-query';
 import {Movies} from '../typings';
-import { fetchMovies } from "../utils/fetchMovies";
+import { fetchApiData } from "../utils/fetchMovies";
+import { fetchData } from "next-auth/client/_utils";
 interface Props {
-  type:string
+  url:string
+  urlParams?:UrlParams
 }
 function MoviesSlider(props: Props) {
-  const {type}=props;
+  const {url,urlParams}=props;
   const { data: movies, isLoading } = useQuery<Movies>(
-    ["/movies/popular",type],
-    async () => fetchMovies()
+    [url,urlParams],
+    async () => fetchApiData(url)
   );
   if (isLoading) {
     return <>Loading...</>;

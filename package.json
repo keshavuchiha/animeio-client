@@ -27,6 +27,7 @@
     "disqus-react": "^1.1.3",
     "embla-carousel-react": "^7.0.0",
     "jotai": "^1.7.7",
+    "mongoose": "^6.5.2",
     "next": "12.2.4",
     "next-auth": "^4.10.3",
     "react": "18.2.0",

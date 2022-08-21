@@ -1,19 +1,30 @@
-import { Button, SimpleGrid,Text } from "@mantine/core";
+import { Button, SimpleGrid, Text } from "@mantine/core";
 import { useViewportSize, useWindowScroll } from "@mantine/hooks";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import Layout from "../../components/Layout";
 import MovieCard from "../../components/MovieCard";
 import { Movies } from "../../typings";
-import { fetchInfiniteMovies } from "../../utils/fetchMovieData";
+import { fetchInfiniteMovies, fetchMoviesQueryData } from "../../utils/fetchMovieData";
 import { fetchMovies } from "../../utils/fetchMovies";
-function Movies() {
-    const [query,setQuery]=useState({})
+import { GetServerSideProps } from "next";
+import { getCurrentlyPlaying, getPoplular, getTopRated, getUpcomming } from "../../constants/constants";
+interface Props {
+  url:string
+}
+function Movies(props: Props) {
+  console.log("props", props);
+  const {url}=props;
+  const [query, setQuery] = useState({});
   const { height, width } = useViewportSize();
   const [scroll, scrollTo] = useWindowScroll();
-  const { data: movies, isLoading,fetchNextPage } = useInfiniteQuery<Movies>(
-    ["/movies/popular",query],
-    async ({ pageParam = 1 }) => fetchInfiniteMovies(pageParam,query),
+  const {
+    data: movies,
+    isLoading,
+    fetchNextPage,
+  } = useInfiniteQuery<Movies>(
+    [url, query],
+    async ({ pageParam = 1 }) => fetchMoviesQueryData(url,pageParam),
     {
       getNextPageParam: (lastpage) => {
         return lastpage.page + 1;
@@ -23,7 +34,7 @@ function Movies() {
   if (isLoading) {
     return <>Loading...</>;
   }
-  if(scroll.y>=height/2){
+  if (scroll.y >= height / 2) {
     fetchNextPage();
   }
   return (
@@ -44,13 +55,36 @@ function Movies() {
             );
           })}
         </SimpleGrid>
-        <Text sx={{position:'sticky',bottom:0}}>Movies
-        <Button onClick={()=>setQuery({"with_genres":27})}>Click</Button>
+        <Text sx={{ position: "sticky", bottom: 0 }}>
+          Movies
+          <Button onClick={() => setQuery({ with_genres: 27 })}>Click</Button>
         </Text>
-        
       </Layout>
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  // console.log(context,'context')
+  let queryParams=context.query.sortBy as string;
+  let url=getPoplular;
+  if(queryParams==='Upcoming'){
+    url=getUpcomming;
+  }
+  else if(queryParams==='Popular'){
+    url=getPoplular;
+  }
+  else if(queryParams==='Top_Rated'){
+    url=getTopRated;
+  }
+  else if(queryParams==='Now_Playing'){
+    url=getCurrentlyPlaying;
+  }
+  return {
+    props: {
+      url
+    },
+  };
+};
 
 export default Movies;
