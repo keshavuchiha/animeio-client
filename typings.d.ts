@@ -12,7 +12,7 @@ export interface ProductionCompanies {
 export interface MovieDetails {
   adult: boolean;
   backdrop_path: string | null;
-  genres: Genre[];
+  genres:[number];
   homepage: string | null;
   id: number;
   orignal_language: string;
@@ -23,10 +23,7 @@ export interface MovieDetails {
   production_companies: ProductionCompanies[];
   release_date: string;
   revenue: number;
-  runtine: number | null;
-  status: "Rumored" | "Planned" | "In Production";
-  Released;
-  Canceled;
+  status: "Rumored" | "Planned" | "In Production"| "Released"|"Canceled";
   title: string;
   video: boolean;
   vote_average: number;

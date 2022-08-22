@@ -6,9 +6,11 @@ function temp() {
     <div>
         <Layout>
             Temp page
+
         </Layout>
     </div>
   )
 }
+
 
 export default temp

@@ -19,8 +19,10 @@ function Users(props:Props) {
     if(status==='unauthenticated'){
         return <>Unauthenticated</>
     }
+    console.log(session);
   return (
-    <div>
+    <>
+        
         <Layout>
         <Tabs variant='outline' color='gray'>
             <Tabs.List>
@@ -37,7 +39,7 @@ function Users(props:Props) {
             <Tabs.Panel value='finished'>Finished</Tabs.Panel>
         </Tabs>
         </Layout>
-        </div>
+        </>
   )
 }
 
