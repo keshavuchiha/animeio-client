@@ -43,7 +43,7 @@ function Movie(props: Props) {
             <Text sx={{ fontSize: "3rem", paddingTop: "5rem" }}>
               {movie?.original_title}
             </Text>
-            <MovieOptions movie={movie}/>
+            <MovieOptions movie={movie} watchlist={true}/>
             <Group>
               <span>Genres </span>
               {movie?.genres.map(({ id, name }: Genres) => {

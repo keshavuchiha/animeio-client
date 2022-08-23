@@ -5,13 +5,13 @@ import { MovieDetails } from "../typings";
 const movieSchema=new mongoose.Schema<MovieDetails>({
     id:{
         type:String,
-        index:true
+        index:true,
     },
     adult:Boolean,
     backdrop_path:String,
     genres:[{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'Genres'
+        ref:'Genre'
     }],
     homepage:String,
     original_title:String,
@@ -21,7 +21,7 @@ const movieSchema=new mongoose.Schema<MovieDetails>({
     poster_path:String,
     production_companies:[{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'ProductionCompanies'
+        ref:'ProductionCompany'
     }],
     release_date:String,
     revenue:Number,
@@ -37,4 +37,4 @@ const movieSchema=new mongoose.Schema<MovieDetails>({
     vote_count:Number,
 },{timestamps:true})
 
-export default mongoose.models.Movie ||mongoose.model('Movie',movieSchema);
+export default mongoose.models.Movie || mongoose.model('Movie',movieSchema);

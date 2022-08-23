@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 import { Genres } from "../typings";
 
 const genreSchema=new mongoose.Schema<Genres>({
-    id:Number,
+    id:String,
     name:String
 })
-export default mongoose.models.Genres || mongoose.model('Genres',genreSchema);
+
+export default mongoose.models.Genre || mongoose.model('Genre',genreSchema);

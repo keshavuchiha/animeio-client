@@ -12,7 +12,7 @@ const UserSchema = new mongoose.Schema({
   },
   image:String,
   MoviesList:[{
-    Movie:{
+    MovieRef:{
       type:mongoose.Schema.Types.ObjectId,
       ref:'Movie'
     },
