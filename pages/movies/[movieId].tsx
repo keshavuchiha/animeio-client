@@ -8,6 +8,7 @@ import { fetchMovieById } from "../../utils/fetchMovieData";
 import { Genres, MovieDetails } from "../../typings";
 import MovieInfo from "../../components/MovieInfo";
 import MovieTabs from "../../components/MovieTabs";
+import MovieOptions from "../../components/MovieOptions";
 
 interface Props {
   id: {
@@ -17,7 +18,7 @@ interface Props {
 
 function Movie(props: Props) {
 
-  const id = parseInt(props.id.movieId as string);
+  const id = props.id.movieId as string;
   const { data: movie } = useQuery<MovieDetails>(["api/movie"], async () =>
     fetchMovieById(id)
   );
@@ -42,6 +43,7 @@ function Movie(props: Props) {
             <Text sx={{ fontSize: "3rem", paddingTop: "5rem" }}>
               {movie?.original_title}
             </Text>
+            <MovieOptions movie={movie}/>
             <Group>
               <span>Genres </span>
               {movie?.genres.map(({ id, name }: Genres) => {

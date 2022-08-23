@@ -6,7 +6,7 @@ import styles from "../styles/SimilarMovieCard.module.css";
 import Link from "next/link";
 interface Props {
   movie?: MovieDetails;
-  key: number;
+  key: string;
 }
 function SimilarMovieCard(props: Props) {
   const { movie } = props;

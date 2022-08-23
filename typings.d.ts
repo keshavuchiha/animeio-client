@@ -12,9 +12,9 @@ export interface ProductionCompanies {
 export interface MovieDetails {
   adult: boolean;
   backdrop_path: string | null;
-  genres:[number];
+  genres:[Genres];
   homepage: string | null;
-  id: number;
+  id: String;
   orignal_language: string;
   original_title: string;
   overview: string | null;

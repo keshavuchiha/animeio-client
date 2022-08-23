@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 import { Schema } from "tabler-icons-react";
 import { MovieDetails } from "../typings";
 
-const moviesSchema=new mongoose.Schema<MovieDetails>({
+const movieSchema=new mongoose.Schema<MovieDetails>({
     id:{
-        type:Number,
+        type:String,
         index:true
     },
     adult:Boolean,
@@ -37,4 +37,4 @@ const moviesSchema=new mongoose.Schema<MovieDetails>({
     vote_count:Number,
 },{timestamps:true})
 
-export default mongoose.models.Movie ||mongoose.model('Movie',moviesSchema);
+export default mongoose.models.Movie ||mongoose.model('Movie',movieSchema);

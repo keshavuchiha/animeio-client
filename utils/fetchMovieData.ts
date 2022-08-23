@@ -2,7 +2,7 @@ import { UrlParams } from './../typings.d';
 import { QueryFunctionContext } from "@tanstack/react-query";
 import { tmdbApiKey } from "./../constants/constants";
 
-export const fetchMovieById = async (id: number) => {
+export const fetchMovieById = async (id: string) => {
   let url = `https://api.themoviedb.org/3/movie/${id}?api_key=${tmdbApiKey}`;
   //   console.log("url", url);
   const response = await fetch(url);
@@ -39,7 +39,7 @@ export const fetchInfiniteMovies = async (
 };
 
 export const fetchSimilarMovies = async (
-  id: number,
+  id: string,
   pageParam: QueryFunctionContext
 ) => {
   // console.log(pageParam,'pageparams');
@@ -50,7 +50,7 @@ export const fetchSimilarMovies = async (
   return data;
 };
 
-export const fetchTrailers = async (id: number) => {
+export const fetchTrailers = async (id: string) => {
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${tmdbApiKey}&language=en-US`
   );

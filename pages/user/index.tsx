@@ -11,7 +11,7 @@ interface Props{
 }
 function Users(props:Props) {
     // console.log('props',props.params.userId)
-    const id=props.params.userId;
+    // const id=props.params.userId;
     const {data:session,status}=useSession();
     if(status==='loading'){
         return <>Loading....</>
@@ -43,12 +43,12 @@ function Users(props:Props) {
   )
 }
 
-export const getServerSideProps:GetServerSideProps=async (context)=>{
-    return {
-        props:{
-            params:context.params
-        }
-    }
-}
+// export const getServerSideProps:GetServerSideProps=async (context)=>{
+//     return {
+//         props:{
+//             params:context.params
+//         }
+//     }
+// }
 
 export default Users

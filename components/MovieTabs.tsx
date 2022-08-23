@@ -7,7 +7,7 @@ import { fetchSimilarMovies, fetchTrailers } from "../utils/fetchMovieData";
 import ReactPlayer from "react-player/lazy";
 interface Props {
   movie: MovieDetails;
-  id: number;
+  id: string;
 }
 function MovieTabs(props: Props) {
   const { movie, id } = props;
@@ -64,7 +64,7 @@ function MovieTabs(props: Props) {
               return (
                 <React.Fragment key={index}>
                   {movies.results.map((movie) => {
-                    return <SimilarMovieCard key={movie.id} movie={movie} />;
+                    return <SimilarMovieCard key={movie.id as string} movie={movie} />;
                   })}
                 </React.Fragment>
               );
