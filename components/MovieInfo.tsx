@@ -30,7 +30,7 @@ function MovieInfo(props:Props) {
             <br />
             Produced By:
             <ol>
-              {movie?.production_companies.map(({ id, name }: Genres) => {
+              {movie?.production_companies.map(({ id , name }: Genres) => {
                 return <li key={id}>{name}</li>;
               })}
             </ol>

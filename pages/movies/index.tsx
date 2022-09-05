@@ -46,8 +46,8 @@ function Movies(props: Props) {
               <React.Fragment key={index}>
                 {movies?.results.map((movie, index) => {
                   return (
-                    <div key={movie.id}>
-                      <MovieCard movie={movie} key={movie.id} />
+                    <div key={movie.id as string}>
+                      <MovieCard movie={movie} key={movie.id as string} />
                     </div>
                   );
                 })}

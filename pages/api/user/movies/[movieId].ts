@@ -32,7 +32,7 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
             console.log(movieRef);
             await user?.MoviesList.push({ListType:"WatchList",MovieRef:movieRef?._id});
             console.log(user);
-            await user.save();
+            await user?.save();
             res.status(201).json({success:true});
         } catch (error) {
             console.log(error);
@@ -47,7 +47,7 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
         if(user?.MoviesList.find((movie)=>{
             return (movie?.MovieRef)===(movieExists?._id);
         })){
-            res.status(201).json({success})
+            res.status(201).json({success:false})
         }
     }
 }
