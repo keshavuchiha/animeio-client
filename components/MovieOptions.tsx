@@ -12,7 +12,7 @@ interface Props{
 }
 
 function MovieOptions(props:Props) {
-  const [watchlist, setWatchlist] = useState(props.watchlist);
+  const [watchlist, setWatchlist] = useState(false);
   const [follow,setFollow]=useState(false);
   const {movie}=props;
   const {data:session,status}=useSession();
@@ -21,17 +21,20 @@ function MovieOptions(props:Props) {
   }
   const handleWatchList=async ()=>{
     
-    setWatchlist(!watchlist)
+    
     console.log(watchlist,'watchlist')
-    if(!watchlist){
+    if(watchlist===true){
+        console.log('there');
         const response=await fetch(`/api/user/movies/${movie.id}`,{
           method:"POST",
           body:JSON.stringify(movie)
         })
+        console.log(response,'res');
     }
     else{
 
     }
+    setWatchlist(!watchlist)
   }
   return (
     <>

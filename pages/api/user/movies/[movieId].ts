@@ -14,6 +14,9 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
     if(!session){
         res.status(401).json({success:false,message:"Please authenticate"});
     }
+    else{
+        
+    }
     await connectDb();
     const { method } = req
     const {movieId}=req.query;
@@ -40,6 +43,11 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
         const user=await User.findOne({email:session?.user?.email});
         const movie=JSON.parse(req.body) as MovieDetails;
         await addMovie(movieId as string,movie);
-        
+        const movieExists=await Movie.exists({id:movieId});
+        if(user?.MoviesList.find((movie)=>{
+            return (movie?.MovieRef)===(movieExists?._id);
+        })){
+            res.status(201).json({success})
+        }
     }
 }

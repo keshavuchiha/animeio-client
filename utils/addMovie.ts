@@ -6,7 +6,7 @@ import ProductionCompany from '../models/ProductionCompanies';
 export const addMovie=async (movieId:string,movie:MovieDetails)=>{
     
         const movieExists=await Movie.exists({id:movieId});
-        // console.log(movieExists,'movieExists');
+        console.log(movieExists,'movieExists');
 
         const genres= await Promise.all(movie.genres.map(async (genre:Genres)=>{
             let genreExist=await Genre.exists({id:genre.id});
@@ -62,6 +62,6 @@ export const addMovie=async (movieId:string,movie:MovieDetails)=>{
                 vote_count:movie.vote_count ,
                 status:movie.status
             })
-            // console.log(MovieStore,'moviestore');
+            console.log(MovieStore,'moviestore');
         }
 }
