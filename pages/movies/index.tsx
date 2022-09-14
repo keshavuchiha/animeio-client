@@ -65,7 +65,7 @@ function Movies(props: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  // console.log(context,'context')
+  console.log(context,'context')
   let queryParams=context.query.sortBy as string;
   let url=getPoplular;
   if(queryParams==='Upcoming'){

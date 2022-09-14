@@ -46,7 +46,7 @@ function Layout(props: Props) {
       <Header height="10vh" className={styles.mainHeader}>
         <Group>
           <BrandAsana color="red" size="2.5rem" />
-          <span>Animeio</span>
+          <span>Streamio</span>
           <span>
             <MainMenu />
           </span>

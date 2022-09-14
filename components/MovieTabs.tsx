@@ -11,6 +11,7 @@ interface Props {
 }
 function MovieTabs(props: Props) {
   const { movie, id } = props;
+  const [hasNextPage,setHasNextPage]=useState(true);
   const [videoIndex, setVideoIndex] = useState(0);
   const { data: similarMovies, fetchNextPage } = useInfiniteQuery<Movies>(
     ["/similar/movies", id],
@@ -70,8 +71,9 @@ function MovieTabs(props: Props) {
               );
             })}
           </Stack>
-          Similar
-          <Button onClick={() => fetchNextPage()}>Fetch nect page</Button>
+          {similarMovies?.pages[similarMovies?.pages.length-1]?.page<similarMovies?.pages[0]?.total_pages && <Button onClick={() => fetchNextPage()}>Fetch next page</Button>}
+          
+          
         </Tabs.Panel>
         <Tabs.Panel value="Trailer">
           <Select

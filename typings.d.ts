@@ -34,6 +34,8 @@ export interface MovieDetails {
 interface Movies {
   results: MovieDetails[];
   page: number;
+  total_pages:number;
+  total_results:number;
 }
 
 export interface AuthorDetails {

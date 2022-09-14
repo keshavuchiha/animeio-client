@@ -25,7 +25,7 @@ const Home: NextPage = (props: Props) => {
   return (
     <div>
       <Head>
-        <title>Animeio</title>
+        <title>StreamIo</title>
         <meta
           name="description"
           content="Best Site to view anime, movies and tv shows"
@@ -42,7 +42,6 @@ const Home: NextPage = (props: Props) => {
 
         <MoviesSlider url={getCurrentlyPlaying} />
         <Link href={`/movies?sortBy=Top_Rated`}>Top Rated</Link>
-
         <MoviesSlider url={getTopRated} />
       </Layout>
     </div>
