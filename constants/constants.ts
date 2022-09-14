@@ -4,4 +4,4 @@ export const getPoplular=`https://api.themoviedb.org/3/movie/popular?api_key=${t
 export const getCurrentlyPlaying=`https://api.themoviedb.org/3/movie/now_playing?api_key=${tmdbApiKey}`;
 export const getTopRated=`https://api.themoviedb.org/3/movie/top_rated?api_key=${tmdbApiKey}`;
 export const getUpcomming=`https://api.themoviedb.org/3/movie/upcoming?api_key=${tmdbApiKey}`;
-export const serverUrl=`https://streamio-client.vercel.app/api`;
+export const serverUrl=`http://localhost:3000/api`;
