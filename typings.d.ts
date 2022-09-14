@@ -69,6 +69,24 @@ export interface Trailer{
   name:string
 }
 
+export interface MovieListType{
+  MovieRef:string;
+  ListType:string
+}
+export interface UserType{
+  email:string;
+  image:string;
+  name:string;
+  _id:string;
+  MoviesList:MovieListType[]
+}
+export interface UserQueryType{
+  data:UserType;
+  success:boolean
+}
+
+
+
 export interface Discover{
   language:string;
   region:string;

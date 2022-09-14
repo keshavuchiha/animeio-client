@@ -14,14 +14,9 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
     if(!session){
         res.status(401).json({success:false,message:"Please authenticate"});
     }
-    else{
-        
-    }
     await connectDb();
     const { method } = req
     const {movieId}=req.query;
-    console.log('fing');
-    
     if(method==='POST'){
         try{
             const user=await User.findOne({email:session?.user?.email});
@@ -29,13 +24,20 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
             const movie=JSON.parse(req.body) as MovieDetails;
             await addMovie(movieId as string,movie);
             const movieRef=await Movie.findOne({id:movieId});
-            console.log(movieRef);
+            // console.log(movieRef);
+            const index=user.MoviesList.map((u:any)=>{
+                // console.log(u.MovieRef)
+                return u.MovieRef.toString();
+            }).indexOf(movieId);
+            if(index>=0){
+                res.status(201).json({success:true});
+            }
             await user?.MoviesList.push({ListType:"WatchList",MovieRef:movieRef?._id});
-            console.log(user);
+            // console.log(user);
             await user?.save();
             res.status(201).json({success:true});
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             res.status(400).json({ success: false ,error});
         }
     }
@@ -44,10 +46,29 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
         const movie=JSON.parse(req.body) as MovieDetails;
         await addMovie(movieId as string,movie);
         const movieExists=await Movie.exists({id:movieId});
-        if(user?.MoviesList.find((movie)=>{
+        if(user?.MoviesList.find((movie:any)=>{
             return (movie?.MovieRef)===(movieExists?._id);
         })){
-            res.status(201).json({success:false})
+            res.status(401).json({success:false})
+        }
+    }
+    else if(method==="DELETE"){
+        try{
+            const {movieId}=JSON.parse(req.body);
+            // console.log("req",req.body);
+            // console.log(movieId,type)
+            const user=await User.findOne({email:session?.user?.email,"MoviesList.MovieRef": movieId});
+            const index=user.MoviesList.map((u:any)=>{
+                // console.log(u.MovieRef)
+                return u.MovieRef.toString();
+            }).indexOf(movieId);
+            // console.log(index);
+            user.MoviesList.slice(index,1);
+            user.save();
+            res.status(201).json({success:true});
+        }
+        catch (error){
+            res.status(400).json({success:false})
         }
     }
 }

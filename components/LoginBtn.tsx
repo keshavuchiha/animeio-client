@@ -26,7 +26,7 @@ function LoginBtn(props:Props) {
 
         return (<>
         <Button onClick={()=>signOut()} >SignOut</Button>
-        {console.log(session?.user?.email)}
+        {/* {console.log(session?.user?.email)} */}
         </>)
     }
   return (

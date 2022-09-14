@@ -22,17 +22,18 @@ function MovieOptions(props:Props) {
   const handleWatchList=async ()=>{
     
     
-    console.log(watchlist,'watchlist')
+    // console.log(watchlist,'watchlist')
     if(watchlist===true){
-        console.log('there');
         const response=await fetch(`/api/user/movies/${movie.id}`,{
           method:"POST",
           body:JSON.stringify(movie)
         })
-        console.log(response,'res');
     }
     else{
-
+      const response=await fetch(`/api/user/movies/${movie.id}`,{
+        method:"DELETE",
+        body:JSON.stringify(movie)
+      })
     }
     setWatchlist(!watchlist)
   }
@@ -45,13 +46,13 @@ function MovieOptions(props:Props) {
       } onClick={() => handleWatchList()}>
         {watchlist?"Remove":"WatchList"}
       </Badge>
-      <Badge color={follow?'red':'blue'} size='lg' leftSection={
+      {/* <Badge color={follow?'red':'blue'} size='lg' leftSection={
         <ActionIcon >
         {follow ? <CircleMinus color="red"/> : <CirclePlus color="blue"/>}
       </ActionIcon>
       } onClick={() => setFollow(!follow)}>
         {follow?"Unfollow":"Follow"}
-      </Badge>
+      </Badge> */}
     </>
   );
 }

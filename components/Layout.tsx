@@ -52,14 +52,14 @@ function Layout(props: Props) {
           </span>
         </Group>
         <Group>
-          <TextInput
+          {/* <TextInput
             placeholder="Search..."
             value={value}
             onChange={(e) => setValue(e.target.value)}
           />
           <ActionIcon onClick={(e:React.MouseEvent<HTMLButtonElement, MouseEvent>)=>handleSearch(e)}>
             <Search />
-          </ActionIcon>
+          </ActionIcon> */}
           <LoginBtn>SignIn</LoginBtn>
         </Group>
       </Header>

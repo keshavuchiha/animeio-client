@@ -55,10 +55,6 @@ function Movies(props: Props) {
             );
           })}
         </SimpleGrid>
-        <Text sx={{ position: "sticky", bottom: 0 }}>
-          Movies
-          <Button onClick={() => setQuery({ with_genres: 27 })}>Click</Button>
-        </Text>
       </Layout>
     </div>
   );

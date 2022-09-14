@@ -42,7 +42,7 @@ function MovieTabs(props: Props) {
 
   function handleUrlChange(e: string): void {
     // setVideoUrl(e.target.value)
-    console.log(e);
+    // console.log(e);
     setVideoIndex(
       trailers?.results.findIndex((trailer) => {
         return trailer.id === e;

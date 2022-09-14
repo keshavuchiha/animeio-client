@@ -1,8 +1,12 @@
 import { Tabs } from '@mantine/core';
+import { useQuery } from '@tanstack/react-query';
 import { GetServerSideProps } from 'next';
 import { useSession } from 'next-auth/react'
-import React from 'react'
+import React, { useState } from 'react'
 import Layout from '../../components/Layout';
+import UserMovieList from '../../components/UserMovieList';
+import { UserQueryType, UserType } from '../../typings';
+import { fetchUserMovieList } from '../../utils/fetchUserMovieList';
 
 interface Props{
     params:{
@@ -10,34 +14,39 @@ interface Props{
     }
 }
 function Users(props:Props) {
-    // console.log('props',props.params.userId)
-    // const id=props.params.userId;
     const {data:session,status}=useSession();
+    const types=["WatchList","On Hold","Followed","Planned","Finished"]
+    const [type,setType]=useState(types[0]);
+    const { data: userDetails ,refetch} = useQuery<UserQueryType>(["api/auth/user",session?.user?.email], async () =>
+    fetchUserMovieList(session?.user?.email as string,type)
+  );
     if(status==='loading'){
         return <>Loading....</>
     }
     if(status==='unauthenticated'){
         return <>Unauthenticated</>
     }
-    console.log(session);
-  return (
+    if(!userDetails){
+        return <>Loading...</>
+    }
+    const user=userDetails.data;
+    console.log(user);
+    return (
     <>
         
         <Layout>
-        <Tabs variant='outline' color='gray'>
+        <Tabs variant='outline' color='gray' defaultValue={types[0]} onTabChange={(t)=>{setType(t as string)}}>
             <Tabs.List>
-                <Tabs.Tab value="watchlist">WatchList</Tabs.Tab>
-                <Tabs.Tab value="followed">Followed</Tabs.Tab>
-                <Tabs.Tab value="onHold">On-Hold</Tabs.Tab>
-                <Tabs.Tab value="planned">Planned</Tabs.Tab>
-                <Tabs.Tab value="finished">Finished</Tabs.Tab>
+                {
+                    types.map((t)=>{
+                        return <div key={t}>
+                            <Tabs.Tab value={t}>{t}</Tabs.Tab>
+                        </div>
+                    })
+                }
             </Tabs.List>
-            <Tabs.Panel value='watchlist'>WatchList</Tabs.Panel>
-            <Tabs.Panel value='followed'>Followed</Tabs.Panel>
-            <Tabs.Panel value='onHold'>On-Hold</Tabs.Panel>
-            <Tabs.Panel value='planned'>Planned</Tabs.Panel>
-            <Tabs.Panel value='finished'>Finished</Tabs.Panel>
         </Tabs>
+        <UserMovieList user={user} type={type} refetch={refetch}/>
         </Layout>
         </>
   )

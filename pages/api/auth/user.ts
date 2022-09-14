@@ -7,7 +7,7 @@ export default async function handler (req:NextApiRequest, res:NextApiResponse) 
 //   console.log(authOptions);
     const session=await unstable_getServerSession(req,res,authOptions);
     const { method } = req
-    console.log(session)
+    // console.log(session)
     if(!session){
         res.status(401).json({success:false,message:"Please authenticate"});
     }
@@ -18,7 +18,7 @@ export default async function handler (req:NextApiRequest, res:NextApiResponse) 
   switch (method) {
     case 'GET':
       try {
-        const users = await User.find({})
+        const users = await User.findOne({email:session?.user?.email as string})
         res.status(200).json({ success: true, data: users })
       } catch (error) {
         res.status(400).json({ success: false })
