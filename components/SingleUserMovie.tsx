@@ -22,7 +22,7 @@ function SingleUserMovie(props: Props) {
   const movie: MovieDetails = data.data;
   const types=["WatchList","On Hold","Followed","Planned","Finished"]
   const handleTypeChange=async (e:string)=>{
-    console.log("changing",e);
+    // console.log("changing",e);
     updateUserMovieType(id,e);
     refetch();
   }

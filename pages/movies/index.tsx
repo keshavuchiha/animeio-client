@@ -13,7 +13,7 @@ interface Props {
   url:string
 }
 function Movies(props: Props) {
-  console.log("props", props);
+  // console.log("props", props);
   const {url}=props;
   const [query, setQuery] = useState({});
   const { height, width } = useViewportSize();
@@ -61,7 +61,7 @@ function Movies(props: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  console.log(context,'context')
+  // console.log(context,'context')
   let queryParams=context.query.sortBy as string;
   let url=getPoplular;
   if(queryParams==='Upcoming'){

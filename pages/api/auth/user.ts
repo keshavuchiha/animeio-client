@@ -18,7 +18,7 @@ export default async function handler (req:NextApiRequest, res:NextApiResponse) 
   switch (method) {
     case 'GET':
       try {
-        console.log(User);
+        // console.log(User);
         const users = await User.findOne({email:session?.user?.email as string})
         
         res.status(200).json({ success: true, data: users })

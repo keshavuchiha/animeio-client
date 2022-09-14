@@ -30,7 +30,7 @@ function Users(props:Props) {
         return <>Loading...</>
     }
     const user=userDetails.data;
-    console.log(user);
+    // console.log(user);
     return (
     <>
         

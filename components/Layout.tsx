@@ -30,7 +30,7 @@ function Layout(props: Props) {
   const { children } = props;
   const handleSearch=async (e:React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
     e.preventDefault()
-    console.log(value)
+    // console.log(value)
     // router.push('/')
     router.push({
       pathname:"/search",
